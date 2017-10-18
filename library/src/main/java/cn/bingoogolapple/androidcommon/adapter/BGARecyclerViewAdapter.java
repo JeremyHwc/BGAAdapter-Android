@@ -29,16 +29,28 @@ import java.util.List;
 /**
  * @param <M> 适配的数据类型
  */
+/**
+ * @author JeremyHwc;
+ * @date 2017/10/18/018 17:41;
+ * @email jeremy_hwc@163.com ;
+ * @desc 通用RecyclerView adapter
+ */
+
 public abstract class BGARecyclerViewAdapter<M> extends RecyclerView.Adapter<BGARecyclerViewHolder> {
     protected int mDefaultItemLayoutId;
     protected Context mContext;
     protected List<M> mData;
+
+    //item child
     protected BGAOnItemChildClickListener mOnItemChildClickListener;
     protected BGAOnItemChildLongClickListener mOnItemChildLongClickListener;
     protected BGAOnItemChildCheckedChangeListener mOnItemChildCheckedChangeListener;
+
+    //recyclerview item
     protected BGAOnRVItemClickListener mOnRVItemClickListener;
     protected BGAOnRVItemLongClickListener mOnRVItemLongClickListener;
     protected BGAOnRVItemChildTouchListener mOnRVItemChildTouchListener;
+
     protected BGAHeaderAndFooterAdapter mHeaderAndFooterAdapter;
 
     protected RecyclerView mRecyclerView;
@@ -58,6 +70,11 @@ public abstract class BGARecyclerViewAdapter<M> extends RecyclerView.Adapter<BGA
         mDefaultItemLayoutId = defaultItemLayoutId;
     }
 
+    /**
+     * Returns the total number of items in the data set held by the adapter.
+     *
+     * @return The total number of items in this adapter.
+     */
     @Override
     public int getItemCount() {
         return mData.size();
@@ -65,7 +82,13 @@ public abstract class BGARecyclerViewAdapter<M> extends RecyclerView.Adapter<BGA
 
     @Override
     public BGARecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        BGARecyclerViewHolder viewHolder = new BGARecyclerViewHolder(this, mRecyclerView, LayoutInflater.from(mContext).inflate(viewType, parent, false), mOnRVItemClickListener, mOnRVItemLongClickListener);
+
+        BGARecyclerViewHolder viewHolder = new BGARecyclerViewHolder(this,
+                mRecyclerView,
+                LayoutInflater.from(mContext).inflate(viewType, parent, false),
+                mOnRVItemClickListener,
+                mOnRVItemLongClickListener);
+
         viewHolder.getViewHolderHelper().setOnItemChildClickListener(mOnItemChildClickListener);
         viewHolder.getViewHolderHelper().setOnItemChildLongClickListener(mOnItemChildLongClickListener);
         viewHolder.getViewHolderHelper().setOnItemChildCheckedChangeListener(mOnItemChildCheckedChangeListener);
@@ -291,6 +314,10 @@ public abstract class BGARecyclerViewAdapter<M> extends RecyclerView.Adapter<BGA
         removeItem(mData.indexOf(model));
     }
 
+    /**
+     * 通知插入一个item
+     * @param position
+     */
     public final void notifyItemInsertedWrapper(int position) {
         if (mHeaderAndFooterAdapter == null) {
             notifyItemInserted(position);
@@ -357,6 +384,11 @@ public abstract class BGARecyclerViewAdapter<M> extends RecyclerView.Adapter<BGA
         setItem(mData.indexOf(oldModel), newModel);
     }
 
+    /**
+     * 通知条目移动位置
+     * @param fromPosition
+     * @param toPosition
+     */
     public final void notifyItemMovedWrapper(int fromPosition, int toPosition) {
         if (mHeaderAndFooterAdapter == null) {
             notifyItemMoved(fromPosition, toPosition);

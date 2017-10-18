@@ -36,6 +36,7 @@ import java.util.List;
  * 描述:
  */
 public class BGAAdapterUtil {
+
     private static final Application sApp;
 
     static {

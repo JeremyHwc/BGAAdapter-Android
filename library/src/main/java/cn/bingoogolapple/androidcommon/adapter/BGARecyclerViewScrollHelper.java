@@ -21,9 +21,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 /**
- * 作者:王浩 邮件:bingoogolapple@gmail.com
- * 创建时间:17/1/9 下午9:27
- * 描述:RecyclerView 滚动到指定位置帮助类。参考的 http://blog.csdn.net/tyzlmjj/article/details/49227601
+ * @author JeremyHwc;
+ * @date 2017/10/18/018 17:42;
+ * @email jeremy_hwc@163.com ;
+ * @desc RecyclerView 滚动到指定位置帮助类。参考的 http://blog.csdn.net/tyzlmjj/article/details/49227601
  */
 public class BGARecyclerViewScrollHelper extends RecyclerView.OnScrollListener {
     private RecyclerView mDataRv;

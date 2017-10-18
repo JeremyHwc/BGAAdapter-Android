@@ -28,7 +28,13 @@ import retrofit2.Response;
  * 创建时间:15/6/28 下午12:34
  * 描述:
  */
-public class LvFragment extends MvcFragment implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener, BGAOnItemChildClickListener, BGAOnItemChildLongClickListener, BGAOnItemChildCheckedChangeListener {
+public class LvFragment extends MvcFragment implements
+        AdapterView.OnItemClickListener,
+        AdapterView.OnItemLongClickListener,
+        BGAOnItemChildClickListener,
+        BGAOnItemChildLongClickListener,
+        BGAOnItemChildCheckedChangeListener {
+
     private ListView mDataLv;
     private NormalAdapterViewAdapter mAdapter;
 

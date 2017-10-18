@@ -50,6 +50,7 @@ public class MainActivity extends MvcActivity {
 
     @Override
     protected void setListener() {
+
     }
 
     @Override

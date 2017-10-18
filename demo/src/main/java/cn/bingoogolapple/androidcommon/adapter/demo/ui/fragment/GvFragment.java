@@ -27,7 +27,13 @@ import retrofit2.Response;
  * 创建时间:15/6/28 下午12:34
  * 描述:
  */
-public class GvFragment extends MvcFragment implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener, BGAOnItemChildClickListener, BGAOnItemChildLongClickListener, BGAOnItemChildCheckedChangeListener {
+public class GvFragment extends MvcFragment implements
+        AdapterView.OnItemClickListener,
+        AdapterView.OnItemLongClickListener,
+        BGAOnItemChildClickListener,
+        BGAOnItemChildLongClickListener,
+        BGAOnItemChildCheckedChangeListener {
+
     private GridView mDataGv;
     private NormalAdapterViewAdapter mAdapter;
 
@@ -107,4 +113,5 @@ public class GvFragment extends MvcFragment implements AdapterView.OnItemClickLi
         mAdapter.getItem(position).selected = isChecked;
         ToastUtil.show((isChecked ? "选中 " : "取消选中") + mAdapter.getItem(position).title);
     }
+
 }

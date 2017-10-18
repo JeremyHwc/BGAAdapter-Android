@@ -18,16 +18,19 @@ package cn.bingoogolapple.androidcommon.adapter;
 
 import android.view.View;
 
+
 /**
- * 作者:王浩 邮件:bingoogolapple@gmail.com
- * 创建时间:16/11/13 上午11:41
- * 描述:
+ * @author JeremyHwc;
+ * @date 2017/10/18/018 10:50;
+ * @email jeremy_hwc@163.com ;
+ * @desc 防止双击的OnClickListener
  */
 public abstract class BGAOnNoDoubleClickListener implements View.OnClickListener {
     private int mThrottleFirstTime = 1000;
     private long mLastClickTime = 0;
 
     public BGAOnNoDoubleClickListener() {
+
     }
 
     public BGAOnNoDoubleClickListener(int throttleFirstTime) {

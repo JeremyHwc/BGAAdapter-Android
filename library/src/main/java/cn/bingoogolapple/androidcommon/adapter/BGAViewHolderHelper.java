@@ -42,19 +42,22 @@ import android.widget.TextView;
  * 创建时间:15/5/26 17:06
  * 描述:为AdapterView和RecyclerView的item设置常见属性（链式编程）
  */
-public class BGAViewHolderHelper implements View.OnLongClickListener, CompoundButton.OnCheckedChangeListener, View.OnTouchListener {
+public class BGAViewHolderHelper
+        implements View.OnLongClickListener,
+        CompoundButton.OnCheckedChangeListener,
+        View.OnTouchListener {
+
+    protected Context mContext;
     protected final SparseArrayCompat<View> mViews;
     protected BGAOnItemChildClickListener mOnItemChildClickListener;
     protected BGAOnItemChildLongClickListener mOnItemChildLongClickListener;
     protected BGAOnItemChildCheckedChangeListener mOnItemChildCheckedChangeListener;
     protected BGAOnRVItemChildTouchListener mOnRVItemChildTouchListener;
+    protected RecyclerView mRecyclerView;
+    protected AdapterView mAdapterView;
     protected View mConvertView;
-    protected Context mContext;
     protected int mPosition;
     protected BGARecyclerViewHolder mRecyclerViewHolder;
-    protected RecyclerView mRecyclerView;
-
-    protected AdapterView mAdapterView;
     /**
      * 留着以后作为扩充对象
      */
@@ -69,8 +72,10 @@ public class BGAViewHolderHelper implements View.OnLongClickListener, CompoundBu
 
     public BGAViewHolderHelper(RecyclerView recyclerView, BGARecyclerViewHolder recyclerViewHolder) {
         mViews = new SparseArrayCompat<>();
+
         mRecyclerView = recyclerView;
         mRecyclerViewHolder = recyclerViewHolder;
+
         mConvertView = mRecyclerViewHolder.itemView;
         mContext = mConvertView.getContext();
     }

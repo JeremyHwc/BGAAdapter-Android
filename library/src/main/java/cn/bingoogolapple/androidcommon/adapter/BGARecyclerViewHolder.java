@@ -21,50 +21,79 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 /**
- * 作者:王浩 邮件:bingoogolapple@gmail.com
- * 创建时间:15/5/28 上午7:28
- * 描述:适用于RecyclerView的item的ViewHolder
+ * @author JeremyHwc;
+ * @date 2017/10/18/018 14:43;
+ * @email jeremy_hwc@163.com ;
+ * @desc 适用于RecyclerView的item的ViewHolder,具有防止快速点击的点击监听以及长按监听
  */
-public class BGARecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnLongClickListener {
+public class BGARecyclerViewHolder extends RecyclerView.ViewHolder
+                                       implements View.OnLongClickListener {
     protected Context mContext;
-    protected BGAOnRVItemClickListener mOnRVItemClickListener;
-    protected BGAOnRVItemLongClickListener mOnRVItemLongClickListener;
-    protected BGAViewHolderHelper mViewHolderHelper;
-    protected RecyclerView mRecyclerView;
-    protected BGARecyclerViewAdapter mRecyclerViewAdapter;
+    protected BGAViewHolderHelper mViewHolderHelper;//ViewHolder  Helper
+    protected BGARecyclerViewAdapter mRecyclerViewAdapter;//RecyclerView Adapter
+    protected RecyclerView mRecyclerView;//RecyclerView
+    protected BGAOnRVItemClickListener mOnRVItemClickListener;//点击事件
+    protected BGAOnRVItemLongClickListener mOnRVItemLongClickListener;//长按事件
 
-    public BGARecyclerViewHolder(BGARecyclerViewAdapter recyclerViewAdapter, RecyclerView recyclerView, View itemView, BGAOnRVItemClickListener onRVItemClickListener, BGAOnRVItemLongClickListener onRVItemLongClickListener) {
+    public BGARecyclerViewHolder(BGARecyclerViewAdapter recyclerViewAdapter,
+                                 RecyclerView recyclerView,
+                                 View itemView,
+                                 BGAOnRVItemClickListener onRVItemClickListener,
+                                 BGAOnRVItemLongClickListener onRVItemLongClickListener) {
+
         super(itemView);
+        mContext = mRecyclerView.getContext();
         mRecyclerViewAdapter = recyclerViewAdapter;
         mRecyclerView = recyclerView;
-        mContext = mRecyclerView.getContext();
         mOnRVItemClickListener = onRVItemClickListener;
         mOnRVItemLongClickListener = onRVItemLongClickListener;
+
+        /**
+         * 防止快速点击的点击监听
+         */
         itemView.setOnClickListener(new BGAOnNoDoubleClickListener() {
             @Override
             public void onNoDoubleClick(View v) {
-                if (v.getId() == BGARecyclerViewHolder.this.itemView.getId() && null != mOnRVItemClickListener) {
+                if (v.getId() == BGARecyclerViewHolder.this.itemView.getId()
+                        && null != mOnRVItemClickListener) {
+
                     mOnRVItemClickListener.onRVItemClick(mRecyclerView, v, getAdapterPositionWrapper());
                 }
             }
         });
+
         itemView.setOnLongClickListener(this);
 
         mViewHolderHelper = new BGAViewHolderHelper(mRecyclerView, this);
     }
 
+    /**
+     * 获取BGAViewHolderHelper实例
+     * @return
+     */
     public BGAViewHolderHelper getViewHolderHelper() {
         return mViewHolderHelper;
     }
 
+    /**
+     * 条目长按事件
+     * @param v
+     * @return
+     */
     @Override
     public boolean onLongClick(View v) {
-        if (v.getId() == this.itemView.getId() && null != mOnRVItemLongClickListener) {
+        if (v.getId() == this.itemView.getId()
+                && null != mOnRVItemLongClickListener) {
+
             return mOnRVItemLongClickListener.onRVItemLongClick(mRecyclerView, v, getAdapterPositionWrapper());
         }
         return false;
     }
 
+    /**
+     * 获取条目所在位置
+     * @return
+     */
     public int getAdapterPositionWrapper() {
         if (mRecyclerViewAdapter.getHeadersCount() > 0) {
             return getAdapterPosition() - mRecyclerViewAdapter.getHeadersCount();

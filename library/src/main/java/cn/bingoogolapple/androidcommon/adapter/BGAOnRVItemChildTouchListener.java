@@ -20,9 +20,10 @@ import android.view.MotionEvent;
 import android.view.View;
 
 /**
- * 作者:王浩 邮件:bingoogolapple@gmail.com
- * 创建时间:15/5/28 上午7:28
- * 描述:RecyclerView的item中子控件触摸事件监听器
+ * @author JeremyHwc;
+ * @date 2017/10/18/018 17:40;
+ * @email jeremy_hwc@163.com ;
+ * @desc RecyclerView的item中子控件触摸事件监听器
  */
 public interface BGAOnRVItemChildTouchListener {
     boolean onRvItemChildTouch(BGARecyclerViewHolder holder, View childView, MotionEvent event);

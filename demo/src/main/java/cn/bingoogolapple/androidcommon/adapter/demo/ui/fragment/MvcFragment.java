@@ -49,7 +49,11 @@ public abstract class MvcFragment extends Fragment {
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        if (isResumed()) {
+        /**
+         * Return true if the fragment is in the resumed state.  This is true
+         * for the duration of {@link #onResume()} and {@link #onPause()} as well.
+         */
+        if (isResumed()) {//在onPause()和onResume()方法中都是可见的
             handleOnVisibilityChangedToUser(isVisibleToUser);
         }
     }
@@ -93,18 +97,21 @@ public abstract class MvcFragment extends Fragment {
      * 懒加载一次。如果只想在对用户可见时才加载数据，并且只加载一次数据，在子类中重写该方法
      */
     protected void onLazyLoadOnce() {
+
     }
 
     /**
      * 对用户可见时触发该方法。如果只想在对用户可见时才加载数据，在子类中重写该方法
      */
     protected void onVisibleToUser() {
+
     }
 
     /**
      * 对用户不可见时触发该方法
      */
     protected void onInvisibleToUser() {
+
     }
 
     /**
